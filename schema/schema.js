@@ -1,6 +1,6 @@
 const graphql = require('graphql')
 
-const {GraphQLObjectType, GraphQLString} = graphql
+const {GraphQLObjectType, GraphQLString, GraphQLSchema} = graphql
 
 var courses = [
     {id: '1', name: 'Patrones diseño Java', language: 'Java', date: '2022'},
@@ -33,4 +33,8 @@ const RootQuery = new GraphQLObjectType({
             }
         }
     }
+})
+
+module.exports = new GraphQLSchema({
+    query: RootQuery
 })
