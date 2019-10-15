@@ -43,10 +43,19 @@ const RootQuery = new GraphQLObjectType({
         course: {
             type: CourseType,
             args:{
-                id: {type: GraphQLString}
+                id: {type: GraphQLID}
             },
             resolve(parent, args){
                 return courses.find(curso=>curso.id ===args.id)
+            }
+        },
+        professor: {
+            type: ProfessorType,
+            args:{
+                name: {type: GraphQLString}
+            },
+            resolve(parent, args){
+                return professors.find(professor=>professor.name ===args.name)
             }
         }
     }
