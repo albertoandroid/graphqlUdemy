@@ -55,7 +55,7 @@ const RootQuery = new GraphQLObjectType({
                 name: {type: GraphQLString}
             },
             resolve(parent, args){
-                return professors.find(professor=>professor.name ===args.name)
+                return professors.find(professor=>professor.name === args.name)
             }
         }
     }
