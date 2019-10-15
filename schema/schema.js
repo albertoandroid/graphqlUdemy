@@ -16,6 +16,13 @@ var professors = [
     {id: '4', name: 'Laura', age: 30, active: true, date: '2022'},
 ]
 
+var users = [
+    {id: '1', name: 'Alberto', email: 'a@a.com', password: '1234', date: '2022'},
+    {id: '2', name: 'Ana', email: 'b@a.com', password: '1234', date: '2022'},
+    {id: '3', name: 'Ester', email: 'c@a.com', password: '1234', date: '2022'},
+    {id: '4', name: 'Alfonso', email: 'd@a.com', password: '1234', date: '2022'},
+]
+
 const CourseType = new GraphQLObjectType({
     name: 'Course',
     fields: ()=>({
@@ -33,6 +40,17 @@ const ProfessorType = new GraphQLObjectType({
         name: {type: GraphQLString},
         age: {type: GraphQLInt},
         active: {type: GraphQLBoolean},
+        date: {type: GraphQLString}
+    })
+})
+
+const UserType = new GraphQLObjectType({
+    name: 'User',
+    fields: ()=>({
+        id: {type: GraphQLID},
+        name: {type: GraphQLString},
+        email: {type: GraphQLString},
+        password: {type: GraphQLString},
         date: {type: GraphQLString}
     })
 })
