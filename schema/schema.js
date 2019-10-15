@@ -75,6 +75,15 @@ const RootQuery = new GraphQLObjectType({
             resolve(parent, args){
                 return professors.find(professor=>professor.name === args.name)
             }
+        },
+        user: {
+            type: UserType,
+            args:{
+                email: {type: GraphQLString}
+            },
+            resolve(parent, args){
+                return users.find(user=>user.email === args.email)
+            }
         }
     }
 })
