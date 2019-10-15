@@ -12,3 +12,18 @@ const CourseType = new GraphQLObjectType({
     })
 
 })
+
+const RootQuery = new GraphQLObjectType({
+    name: 'RootQueryType',
+    fields:{
+        course: {
+            type: CourseType,
+            args:{
+                id: {type: GraphQLString}
+            },
+            resolve(parent, args){
+                return 
+            }
+        }
+    }
+})
