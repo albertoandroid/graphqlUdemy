@@ -1,6 +1,6 @@
 const graphql = require('graphql')
 
-const {GraphQLObjectType, GraphQLID, GraphQLInt, GraphQLBoolean, GraphQLString, GraphQLSchema} = graphql
+const {GraphQLObjectType, GraphQLID, GraphQLInt, GraphQLBoolean, GraphQLString, GraphQLList, GraphQLSchema} = graphql
 
 var courses = [
     {id: '1', name: 'Patrones diseño Java', language: 'Java', date: '2022', professorId: '2'},
@@ -46,7 +46,13 @@ const ProfessorType = new GraphQLObjectType({
         name: {type: GraphQLString},
         age: {type: GraphQLInt},
         active: {type: GraphQLBoolean},
-        date: {type: GraphQLString}
+        date: {type: GraphQLString},
+        course:{
+            type: new GraphQLList(CourseType),
+            resolve(parent, args){
+                return courses.filter(course=> course.professorId === parent.id)
+            }
+        }
     })
 })
 
