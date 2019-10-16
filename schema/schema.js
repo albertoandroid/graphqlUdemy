@@ -96,6 +96,14 @@ const RootQuery = new GraphQLObjectType({
                 return professors.find(professor=>professor.name === args.name)
             }
         },
+
+        professors: {
+            type: new GraphQLList(ProfessorType),
+            resolve(parent, args){
+                return professors
+            }
+        },
+
         user: {
             type: UserType,
             args:{
