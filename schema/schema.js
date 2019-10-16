@@ -79,6 +79,14 @@ const RootQuery = new GraphQLObjectType({
                 return courses.find(curso=>curso.id ===args.id)
             }
         },
+
+        courses: {
+            type: new GraphQLList(CourseType),
+            resolve(parent, args){
+                return courses
+            }
+        },
+
         professor: {
             type: ProfessorType,
             args:{
