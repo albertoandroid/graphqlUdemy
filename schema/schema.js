@@ -3,10 +3,10 @@ const graphql = require('graphql')
 const {GraphQLObjectType, GraphQLID, GraphQLInt, GraphQLBoolean, GraphQLString, GraphQLSchema} = graphql
 
 var courses = [
-    {id: '1', name: 'Patrones diseño Java', language: 'Java', date: '2022'},
-    {id: '2', name: 'Patrones diseño Kotlin', language: 'Kotlin', date: '2022'},
-    {id: '3', name: 'Patrones diseño C', language: 'C', date: '2022'},
-    {id: '4', name: 'Patrones diseño C++', language: 'C++', date: '2022'},   
+    {id: '1', name: 'Patrones diseño Java', language: 'Java', date: '2022', professorId: '2'},
+    {id: '2', name: 'Patrones diseño Kotlin', language: 'Kotlin', date: '2022', professorId: '2'},
+    {id: '3', name: 'Patrones diseño C', language: 'C', date: '2022', professorId: '4'},
+    {id: '4', name: 'Patrones diseño C++', language: 'C++', date: '2022', professorId: '1'},   
 ]
 
 var professors = [
@@ -29,7 +29,13 @@ const CourseType = new GraphQLObjectType({
         id: {type: GraphQLID},
         name: {type: GraphQLString},
         language: {type: GraphQLString},
-        date: {type: GraphQLString}
+        date: {type: GraphQLString},
+        professor:{
+            type: ProfessorType,
+            resolve(parent, args){
+                return professors.find(professor=> professor.id === parent.professorId)
+            } 
+        }
     })
 })
 
