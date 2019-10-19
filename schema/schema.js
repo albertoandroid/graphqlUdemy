@@ -1,4 +1,5 @@
 const graphql = require('graphql')
+const Course = require('../models/course')
 
 const {GraphQLObjectType, GraphQLID, GraphQLInt, GraphQLBoolean, GraphQLString, GraphQLList, GraphQLSchema} = graphql
 
