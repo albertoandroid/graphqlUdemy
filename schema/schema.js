@@ -1,5 +1,6 @@
 const graphql = require('graphql')
 const Course = require('../models/course')
+const Professor = require('../models/professor')
 
 const {GraphQLObjectType, GraphQLID, GraphQLInt, GraphQLBoolean, GraphQLString, GraphQLList, GraphQLSchema} = graphql
 
@@ -125,15 +126,29 @@ const Mutation = new GraphQLObjectType({
             args:{
                 name: {type: GraphQLString},
                 language: {type: GraphQLString},
-                date: {type: GraphQLString}
+                date: {type: GraphQLString},
+                professorId: {type: GraphQLID}
             },
             resolve(parent, args){
                 let course = new Course({
                     name: args.name,
                     language: args.language,
-                    date: args.date
+                    date: args.date,
+                    professorId: args.professorId
                 })
                 return course.save()
+            }
+        },
+        addProfessor:{
+            type: ProfessorType,
+            args:{
+                name: {type: GraphQLString},
+                age: {type: GraphQLInt},
+                active: {type: GraphQLBoolean},
+                date: {type: GraphQLString}
+            },
+            resolve(parent, args){
+                return Professor(args).save()
             }
         }
     }
