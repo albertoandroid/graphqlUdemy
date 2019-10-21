@@ -181,6 +181,27 @@ const Mutation = new GraphQLObjectType({
             resolve(parent, args){
                 return Professor(args).save()
             }
+        },
+        updateProfessor:{
+            type: ProfessorType,
+            args:{
+                id:{type: GraphQLID},
+                name: {type: GraphQLString},
+                age: {type: GraphQLInt},
+                active: {type: GraphQLBoolean},
+                date: {type: GraphQLString}
+            },
+            resolve(parent, args){
+                return Professor.findByIdAndUpdate(args.id,{
+                    name: args.name,
+                    age: args.age,
+                    active: args.active,
+                    date: args.date
+                },
+                {
+                    new: true
+                })
+            }
         }
     }
 })
