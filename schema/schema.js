@@ -40,7 +40,7 @@ const ProfessorType = new GraphQLObjectType({
             type: new GraphQLList(CourseType),
             resolve(parent, args){
                 //return courses.filter(course=> course.professorId === parent.id)
-                return Course.find({professorId:args.id})
+                return Course.find({professorId: parent.id})
             }
         }
     })
@@ -86,7 +86,7 @@ const RootQuery = new GraphQLObjectType({
             },
             resolve(parent, args){
                 //return professors.find(professor=>professor.name === args.name)
-                return Professor.find(args.name)
+                return Professor.findOne({name: args.name})
             }
         },
 
