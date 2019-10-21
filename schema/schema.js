@@ -4,20 +4,6 @@ const Professor = require('../models/professor')
 
 const {GraphQLObjectType, GraphQLID, GraphQLInt, GraphQLBoolean, GraphQLString, GraphQLList, GraphQLSchema} = graphql
 
-var courses = [
-    {id: '1', name: 'Patrones diseño Java', language: 'Java', date: '2022', professorId: '2'},
-    {id: '2', name: 'Patrones diseño Kotlin', language: 'Kotlin', date: '2022', professorId: '2'},
-    {id: '3', name: 'Patrones diseño C', language: 'C', date: '2022', professorId: '4'},
-    {id: '4', name: 'Patrones diseño C++', language: 'C++', date: '2022', professorId: '1'},   
-]
-
-var professors = [
-    {id: '1', name: 'Alberto', age: 30, active: true, date: '2022'},
-    {id: '2', name: 'Maria', age: 23, active: false, date: '2022'},
-    {id: '3', name: 'Pepe', age: 30, active: true, date: '2022'},
-    {id: '4', name: 'Laura', age: 30, active: true, date: '2022'},
-]
-
 var users = [
     {id: '1', name: 'Alberto', email: 'a@a.com', password: '1234', date: '2022'},
     {id: '2', name: 'Ana', email: 'b@a.com', password: '1234', date: '2022'},
