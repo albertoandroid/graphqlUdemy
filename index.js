@@ -5,7 +5,9 @@ const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/coursedb', {
   useNewUrlParser: true,
-  useUnifiedTopology: true})
+  useUnifiedTopology: true,
+  useFindAndModify: false
+})
   .then(()=> console.log('Conectado a MongoDB correctamente'))
   .catch(err => console.log('No se ha Conectado a MongoDB correctamente'))
 
