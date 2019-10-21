@@ -164,6 +164,12 @@ const Mutation = new GraphQLObjectType({
                 return Course.findByIdAndDelete(args.id)
             }
         },
+        deleteAllCourses:{
+            type: CourseType,
+            resolve(parent, args){
+                return Course.deleteMany({})
+            }
+        },
         addProfessor:{
             type: ProfessorType,
             args:{
