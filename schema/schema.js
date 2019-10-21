@@ -35,7 +35,8 @@ const CourseType = new GraphQLObjectType({
         professor:{
             type: ProfessorType,
             resolve(parent, args){
-                return professors.find(professor=> professor.id === parent.professorId)
+                //return professors.find(professor=> professor.id === parent.professorId)
+                return Professor.findById(parent.professorId)
             } 
         }
     })
@@ -52,7 +53,8 @@ const ProfessorType = new GraphQLObjectType({
         course:{
             type: new GraphQLList(CourseType),
             resolve(parent, args){
-                return courses.filter(course=> course.professorId === parent.id)
+                //return courses.filter(course=> course.professorId === parent.id)
+                return Course.find({professorId:args.id})
             }
         }
     })
@@ -78,14 +80,16 @@ const RootQuery = new GraphQLObjectType({
                 id: {type: GraphQLID}
             },
             resolve(parent, args){
-                return courses.find(curso=>curso.id ===args.id)
+                //return courses.find(curso=>curso.id ===args.id)
+                return Course.findById(args.id)
             }
         },
 
         courses: {
             type: new GraphQLList(CourseType),
             resolve(parent, args){
-                return courses
+                //return courses
+                return Course.find()
             }
         },
 
@@ -95,14 +99,16 @@ const RootQuery = new GraphQLObjectType({
                 name: {type: GraphQLString}
             },
             resolve(parent, args){
-                return professors.find(professor=>professor.name === args.name)
+                //return professors.find(professor=>professor.name === args.name)
+                return Professor.find(args.name)
             }
         },
 
         professors: {
             type: new GraphQLList(ProfessorType),
             resolve(parent, args){
-                return professors
+                //return professors
+                return Professor.find()
             }
         },
 
