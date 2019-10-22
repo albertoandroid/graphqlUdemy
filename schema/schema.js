@@ -227,11 +227,13 @@ const Mutation = new GraphQLObjectType({
             async resolve(parent, args){
                 let user = await User.findOne({email: args.email})
                 if(user) return {error: 'Usuario ya esta en la base de dato'}
+                const salt = await bcrypt.genSalt(10)
+                const hashPassword = await bcrypt.hash(args.password, salt)
                 user = new User({
                     name: args.name,
                     email: args.email,
                     date: args.date,
-                    password: args.password
+                    password: hashPassword
                 })
                 user.save()
                 return{message: 'Usuario registrado correctamente'}
