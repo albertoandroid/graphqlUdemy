@@ -3,6 +3,7 @@ const Course = require('../models/course')
 const Professor = require('../models/professor')
 const User = require('../models/user')
 const bcrypt = require('bcrypt')
+const auth = require('../utils/auth')
 
 const {GraphQLObjectType, GraphQLID, GraphQLInt, GraphQLBoolean, GraphQLString, GraphQLList, GraphQLSchema} = graphql
 
@@ -237,6 +238,20 @@ const Mutation = new GraphQLObjectType({
                 })
                 user.save()
                 return{message: 'Usuario registrado correctamente'}
+            }
+        },
+        login:{
+            type: MessageType,
+            args:{
+                email: {type: GraphQLString},
+                password:{type: GraphQLString}
+            },
+            async resolve(parent, args){
+                const result = await auth.login(args.email, args.password, '1234')
+                return {
+                    message: result.message,
+                    error: result.error
+                }
             }
         }
     }
