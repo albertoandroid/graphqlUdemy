@@ -4,13 +4,6 @@ const Professor = require('../models/professor')
 
 const {GraphQLObjectType, GraphQLID, GraphQLInt, GraphQLBoolean, GraphQLString, GraphQLList, GraphQLSchema} = graphql
 
-var users = [
-    {id: '1', name: 'Alberto', email: 'a@a.com', password: '1234', date: '2022'},
-    {id: '2', name: 'Ana', email: 'b@a.com', password: '1234', date: '2022'},
-    {id: '3', name: 'Ester', email: 'c@a.com', password: '1234', date: '2022'},
-    {id: '4', name: 'Alfonso', email: 'd@a.com', password: '1234', date: '2022'},
-]
-
 const CourseType = new GraphQLObjectType({
     name: 'Course',
     fields: ()=>({
@@ -54,6 +47,15 @@ const UserType = new GraphQLObjectType({
         email: {type: GraphQLString},
         password: {type: GraphQLString},
         date: {type: GraphQLString}
+    })
+})
+
+const MessageType = new GraphQLObjectType({
+    name: 'Message',
+    fields: ()=>({
+        message: {type: GraphQLString},
+        token: {type: GraphQLString},
+        error: {type: GraphQLString}
     })
 })
 
