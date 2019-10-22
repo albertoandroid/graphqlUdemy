@@ -2,6 +2,7 @@ const graphql = require('graphql')
 const Course = require('../models/course')
 const Professor = require('../models/professor')
 const User = require('../models/user')
+const bcrypt = require('bcrypt')
 
 const {GraphQLObjectType, GraphQLID, GraphQLInt, GraphQLBoolean, GraphQLString, GraphQLList, GraphQLSchema} = graphql
 
