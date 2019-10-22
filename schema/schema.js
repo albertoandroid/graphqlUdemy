@@ -1,6 +1,7 @@
 const graphql = require('graphql')
 const Course = require('../models/course')
 const Professor = require('../models/professor')
+const User = require('../models/user')
 
 const {GraphQLObjectType, GraphQLID, GraphQLInt, GraphQLBoolean, GraphQLString, GraphQLList, GraphQLSchema} = graphql
 
@@ -212,6 +213,27 @@ const Mutation = new GraphQLObjectType({
             },
             resolve(parent, args){
                 return Professor.findByIdAndDelete(args.id)
+            }
+        },
+        addUser:{
+            type: MessageType,
+            args:{
+                name: {type: GraphQLString},
+                email: {type: GraphQLString},
+                password: {type: GraphQLString},
+                date: {type: GraphQLString}
+            },
+            async resolve(parent, args){
+                let user = await User.findOne({email: args.email})
+                if(user) return {error: 'Usuario ya esta en la base de dato'}
+                user = new User({
+                    name: args.name,
+                    email: args.email,
+                    date: args.date,
+                    password: args.password
+                })
+                user.save()
+                return{message: 'Usuario registrado correctamente'}
             }
         }
     }
