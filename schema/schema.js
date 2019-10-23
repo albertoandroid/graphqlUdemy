@@ -250,7 +250,8 @@ const Mutation = new GraphQLObjectType({
                 const result = await auth.login(args.email, args.password, '1234')
                 return {
                     message: result.message,
-                    error: result.error
+                    error: result.error,
+                    token: result.token
                 }
             }
         }
