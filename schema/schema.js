@@ -269,13 +269,13 @@ const Mutation = new GraphQLObjectType({
                     throw new Error('No estas autorizado a hacer esta operacion')
                 }
                 if(args.id === context.user._id){
-                    User.findByIdAndUpdate(args.id,{
+                    return User.findByIdAndUpdate(args.id,{
                         name: args.name,
                         date: args.date
-                    }),
+                    },
                     {
                         new: true
-                    }
+                    })
                 }else{
                     throw new Error('No puedes modificar otro usuario')
 
