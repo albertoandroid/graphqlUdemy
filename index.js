@@ -18,10 +18,13 @@ app.use(
   auth.checkHeaders
 )
 
-app.use('/graphql', graphqlHTTP({
+app.use('/graphql', graphqlHTTP((req)=>{
+  return{
     schema,
-    graphiql:true
-
+    context:{
+      user: req.user
+    }
+  }
 }))
 
 app.listen(3131, ()=>{

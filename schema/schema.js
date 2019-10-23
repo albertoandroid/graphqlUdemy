@@ -70,8 +70,10 @@ const RootQuery = new GraphQLObjectType({
             args:{
                 id: {type: GraphQLID}
             },
-            resolve(parent, args){
-                //return courses.find(curso=>curso.id ===args.id)
+            resolve(parent, args, context){
+                if(!context.user.auth){
+                    throw new Error('Unauthenticated...')
+                }
                 return Course.findById(args.id)
             }
         },
