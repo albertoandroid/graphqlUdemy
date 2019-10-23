@@ -21,6 +21,21 @@ const auth = {
     checkHeaders: (req, res, next)=>{
         const token = req.header('Authorization')
         const jwtToken = token.split(' ')[1]
+
+        if(jwtToken){
+            try{
+                const payload = jwt.verify(jwtToken, '1234')
+                req.user = payload
+                req.user.auth = true
+                return next()
+            }catch(e){
+                req.user = {auth: false}
+                return next()
+            }
+        }else{
+            req.user = {auth: false}
+            return next()
+        }
     }
 }
 
