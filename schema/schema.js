@@ -256,7 +256,8 @@ const Mutation = new GraphQLObjectType({
                     token: result.token
                 }
             }
-        }
+        },
+        
     }
 })
 

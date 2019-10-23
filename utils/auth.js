@@ -20,6 +20,10 @@ const auth = {
     },
     checkHeaders: (req, res, next)=>{
         const token = req.header('Authorization')
+        if(!token){
+            req.user = {auth: false}
+            return next()
+        }
         const jwtToken = token.split(' ')[1]
 
         if(jwtToken){
