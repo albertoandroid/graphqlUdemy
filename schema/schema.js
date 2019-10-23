@@ -257,6 +257,31 @@ const Mutation = new GraphQLObjectType({
                 }
             }
         },
+        updateUser:{
+            type: UserType,
+            args:{
+                id: {type: GraphQLID},
+                name: {type: GraphQLString},
+                date: {type: GraphQLString}
+            }, 
+            resolve(parent, args, context){
+                if(!context.user.auth){
+                    throw new Error('No estas autorizado a hacer esta operacion')
+                }
+                if(args.id === context.user._id){
+                    User.findByIdAndUpdate(args.id,{
+                        name: args.name,
+                        date: args.date
+                    }),
+                    {
+                        new: true
+                    }
+                }else{
+                    throw new Error('No puedes modificar otro usuario')
+
+                }
+            }
+        }
         
     }
 })
