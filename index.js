@@ -4,6 +4,8 @@ const schema = require('./schema/schema')
 const mongoose = require('mongoose');
 const auth = require('./utils/auth')
 
+console.log(process.env.SECRET_KEY_JWT_COURSE_API)
+
 mongoose.connect('mongodb://localhost/coursedb', {
   useNewUrlParser: true,
   useUnifiedTopology: true,

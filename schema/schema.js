@@ -249,7 +249,7 @@ const Mutation = new GraphQLObjectType({
                 password:{type: GraphQLString}
             },
             async resolve(parent, args){
-                const result = await auth.login(args.email, args.password, '1234')
+                const result = await auth.login(args.email, args.password, process.env.SECRET_KEY_JWT_COURSE_API)
                 return {
                     message: result.message,
                     error: result.error,

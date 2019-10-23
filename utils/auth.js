@@ -28,7 +28,7 @@ const auth = {
 
         if(jwtToken){
             try{
-                const payload = jwt.verify(jwtToken, '1234')
+                const payload = jwt.verify(jwtToken, process.env.SECRET_KEY_JWT_COURSE_API)
                 req.user = payload
                 req.user.auth = true
                 return next()
