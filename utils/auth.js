@@ -17,6 +17,10 @@ const auth = {
 
 
         return {message: 'login correcto', token: token}
+    },
+    checkHeaders: (req, res, next)=>{
+        const token = req.header('Authorization')
+        const jwtToken = token.split(' ')[1]
     }
 }
 
